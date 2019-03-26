@@ -9,7 +9,7 @@ namespace sugorokuRPG_BattlePartTest
     public class statuscalc
     {
         float playerSyuzokuchi = 60.0f;
-        float level;
+        //float level;
         float HP;
         float ABCDS;
         int hp;
@@ -36,26 +36,52 @@ namespace sugorokuRPG_BattlePartTest
             abcds = (int)ABCDS;
             return (hp, abcds);
         }
+
         /// <summary>
         /// <param name="attacker">IAttackable</param>
         /// <param name="defencer">IDefenceable</param>
         /// </summary>
         /// <returns></returns>
-        public int DamagePointCalc(IAttackable attacker ,IDamageable defencer)
+        public int DamagePointCalc(IBattleable attacker ,IBattleable defencer)
         {
-            int attackerLevel = 1;
             int iryoku = 50;
-            int attackerAttack = 30;
-            int defencerDefence = 30;
-            Random random = new Random();
-            float ransu = random.Next(85, 101) / 100;
+            float ransu = DamageRatioCalc();
 
-            var damagePoint = ((attackerLevel * 2 / 5 + 2) *(iryoku * attackerAttack / defencerDefence) / 50 + 2) * ransu;
+            var damagePoint = ((attacker.level * 2 / 5 + 2) *(iryoku * attacker.attackPoint / defencer.defencePoint) / 50 + 2) * ransu;
 
             return (int)damagePoint;
         }
 
+        public float DamageRatioCalc()
+        {
+            Random random = new Random();
+            int ransu = random.Next(0, 100);
 
+            float ratio = 1.0f;
+
+            if (0 <= ransu && ransu < 8)
+            {
+                ratio = 1.2f;
+            }
+            else if (8 <= ransu && ransu < 25)
+            {
+                ratio = 1.1f;
+            }
+            else if (25 <= ransu && ransu < 75)
+            {
+                ratio = 1.0f;
+            }
+            else if (75 <= ransu && ransu < 92)
+            {
+                ratio = 0.9f;
+            }
+            else if (92 <= ransu && ransu < 100)
+            {
+                ratio = 0.8f;
+            }
+
+            return ratio;
+        }
 
         void Memo()
         {

@@ -46,8 +46,7 @@
     <Compile Include="Battle.cs" />
     <Compile Include="Charactor.cs" />
     <Compile Include="Enemy.cs" />
-    <Compile Include="IAttackable.cs" />
-    <Compile Include="IDamageable.cs" />
+    <Compile Include="IBattleable.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

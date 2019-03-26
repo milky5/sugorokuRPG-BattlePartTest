@@ -6,17 +6,26 @@ using System.Threading.Tasks;
 
 namespace sugorokuRPG_BattlePartTest
 {
-    public class Player : Charactor,IAttackable, IDamageable
+    public class Player : Charactor, IBattleable
     {
-        public string playerName;
-        string haveitem;
+        //public string playerName;
+        //string haveitem;
         //List<ItemList> items;
-        int money;
+        //int money;
 
         public bool isActive;
         public int remainMass { get; set; }
         public bool isMoving { get; set; }
         public bool firstMass { get; set; }
+
+        public int level { get; set; }
+        public int hp { get; set; }
+        public int attackPoint { get; set; }
+        public int defencePoint { get; set; }
+        public int magicAttackPoint { get; set; }
+        public int magicDefencePoint { get; set; }
+        public int speed { get; set; }
+
         //public StoryList story { get; set; }
 
         private void Start()
@@ -40,12 +49,14 @@ namespace sugorokuRPG_BattlePartTest
 
         public void Attack()
         {
-            //Console.WriteLine($"{name}の攻撃");
+            Console.WriteLine($"{charactorName}の攻撃");
         }
 
-        public void BeDamaged()
+        public void BeDamaged(int damagePoint)
         {
-            //Console.WriteLine($"{name}のHPが{hp}になった。");
+            Console.WriteLine($"{charactorName}に{damagePoint}のダメージ");
+            hp -= damagePoint;
+            Console.WriteLine($"{charactorName}のHPが{hp}になった。");
         }
 
         //public void Move()
