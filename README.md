@@ -1,0 +1,3 @@
+# sugorokuRPG-BattlePartTest
+Unityにて制作中のsugorokuRPGのバトルパートのテストを行っています。
+コンソールアプリにて制作。
