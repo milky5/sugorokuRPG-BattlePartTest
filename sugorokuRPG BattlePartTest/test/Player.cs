@@ -8,10 +8,9 @@ namespace sugorokuRPG_BattlePartTest
 {
     public class Player : Charactor, IBattleable
     {
-        //public string playerName;
         //string haveitem;
         //List<ItemList> items;
-        //int money;
+        public int money;
 
         public bool isActive;
         public int remainMass { get; set; }

@@ -25,8 +25,37 @@ namespace test
         List<IBattleable> battlers = new List<IBattleable>();
 
 
+        public void Test()
+        {
+            SetStatus();
+            Sort();
+            //[攻撃][魔法攻撃]がクリックされたら、どっちがクリックされたのか保持
+            /*
+            While的な
+            OnMouseButtonDown
+            攻撃　→　文字表示コルーチン
+            防御　→　文字表示コルーチン
+            OnMouseButtonDown
+            攻撃　→　文字表示コルーチン
+            防御　→　文字表示コルーチン
+            OnMouseButtonDown
+            攻撃　→　文字表示コルーチン
+            防御　→　文字表示コルーチン
+            break
+
+            if(isEnd)
+            いつもの文字表示コルーチン
+            break;
+            if(!isEnd)
+            専用の文字表示コルーチン
+            */
+
+            Lister();
+        }
+
         void SetStatus()
         {
+            player.money = 1000;
             player.level = 20;
             player.hp = 20;
             player.attackPoint = 10;
@@ -37,7 +66,7 @@ namespace test
             player.charactorName = "ぷれいやー";
 
             enemy.level = 15;
-            enemy.hp = 30;
+            enemy.hp = 20;
             enemy.attackPoint = 8;
             enemy.defencePoint = 8;
             enemy.magicAttackPoint = 8;
@@ -86,24 +115,22 @@ namespace test
             {
                 Player winner = attacker as Player;
                 returnList.Add($"{winner.charactorName}の勝利！");
+                winner.level++;
+                returnList.Add($"{winner.charactorName}はレベルが1上がった！");
+                Random random = new Random();
+                returnList.Add($"{winner.charactorName}は報奨金として{random.Next(1000)}円もらった！");
             }
             if (isEnd && attacker is Enemy)
             {
                 Player loser = defencer as Player;
                 returnList.Add($"{loser.charactorName}の敗北…");
+                loser.money /= 2;
+                returnList.Add($"{loser.charactorName}は混乱してお金を落とした");
+                returnList.Add($"{loser.charactorName}の所持金が半分の{loser.money}円になった");
             }
 
             return (returnList, isEnd);
         }
-
-        public void Test()
-        {
-            SetStatus();
-            Sort();
-            Lister();
-        }
-
-
 
         public int DamagePointCalc(IBattleable attacker, IBattleable defencer)
         {
