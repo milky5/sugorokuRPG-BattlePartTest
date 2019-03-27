@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sugorokuRPG BattlePartTest", "sugorokuRPG BattlePartTest\sugorokuRPG BattlePartTest.csproj", "{DD4E378C-DCA4-41A7-ABD9-A39D5522FED9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test", "test\test.csproj", "{9F89690A-13C3-4A33-9269-D25B1DC71766}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{DD4E378C-DCA4-41A7-ABD9-A39D5522FED9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD4E378C-DCA4-41A7-ABD9-A39D5522FED9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD4E378C-DCA4-41A7-ABD9-A39D5522FED9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F89690A-13C3-4A33-9269-D25B1DC71766}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F89690A-13C3-4A33-9269-D25B1DC71766}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F89690A-13C3-4A33-9269-D25B1DC71766}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F89690A-13C3-4A33-9269-D25B1DC71766}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
