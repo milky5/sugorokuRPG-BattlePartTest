@@ -37,7 +37,7 @@ namespace test
             player.charactorName = "ぷれいやー";
 
             enemy.level = 15;
-            enemy.hp = 20;
+            enemy.hp = 30;
             enemy.attackPoint = 8;
             enemy.defencePoint = 8;
             enemy.magicAttackPoint = 8;
@@ -59,19 +59,13 @@ namespace test
             while (true)
             {
                 (var battleStr ,var isEnd) = Direct(battlers[0], battlers[1]);
-                foreach (var b in battleStr)
-                {
-                    Console.WriteLine(b);
-                }
+                battleStr.ForEach(n => Console.WriteLine(n));
                 Console.ReadLine();
                 if (isEnd) break;
                 Console.Clear();
 
                 (battleStr,isEnd) = Direct(battlers[1], battlers[0]);
-                foreach (var b in battleStr)
-                {
-                    Console.WriteLine(b);
-                }
+                battleStr.ForEach(n => Console.WriteLine(n));
                 Console.ReadLine();
                 if (isEnd) break;
                 Console.Clear();
@@ -83,10 +77,21 @@ namespace test
             var attackStr = attacker.Attack();
             var damagePoint = DamagePointCalc(attacker, defencer);
             (var damageStr,var isEnd) = defencer.BeDamaged(damagePoint);
-            
+
             var returnList = new List<string>();
             returnList.Add(attackStr);
             damageStr.ForEach(n => returnList.Add(n));
+
+            if (isEnd && attacker is Player)
+            {
+                Player winner = attacker as Player;
+                returnList.Add($"{winner.charactorName}の勝利！");
+            }
+            if (isEnd && attacker is Enemy)
+            {
+                Player loser = defencer as Player;
+                returnList.Add($"{loser.charactorName}の敗北…");
+            }
 
             return (returnList, isEnd);
         }
