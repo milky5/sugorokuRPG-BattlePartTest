@@ -47,16 +47,23 @@ namespace sugorokuRPG_BattlePartTest
             }
         }
 
-        public void Attack()
+        public string Attack()
         {
-            Console.WriteLine($"{charactorName}の攻撃");
+            return $"{charactorName}の攻撃";
         }
 
-        public void BeDamaged(int damagePoint)
+        public (List<string>, bool) BeDamaged(int damagePoint)
         {
-            Console.WriteLine($"{charactorName}に{damagePoint}のダメージ");
+            var returnList = new List<string>();
+            returnList.Add($"{charactorName}に{damagePoint}のダメージ");
             hp -= damagePoint;
-            Console.WriteLine($"{charactorName}のHPが{hp}になった。");
+            returnList.Add($"{charactorName}のHPが{hp}になった。");
+            if (hp <= 0)
+            {
+                returnList.Add($"{charactorName}は倒れた");
+                return (returnList, true);
+            }
+            return (returnList, false);
         }
 
         //public void Move()

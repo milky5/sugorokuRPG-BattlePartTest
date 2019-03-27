@@ -16,7 +16,7 @@ namespace sugorokuRPG_BattlePartTest
         int magicDefencePoint { get; set; }
         int speed { get; set; }
 
-        void Attack();
-        void BeDamaged(int damagePoint);
+        string Attack();
+        (List<string>,bool) BeDamaged(int damagePoint);
     }
 }

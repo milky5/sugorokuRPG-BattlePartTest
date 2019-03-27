@@ -22,7 +22,6 @@ namespace test
     {
         Player player = new Player();
         Enemy enemy = new Enemy();
-        List<Charactor> charactors = new List<Charactor>();
         List<IBattleable> battlers = new List<IBattleable>();
 
 
@@ -49,9 +48,6 @@ namespace test
 
         void Sort()
         {
-            //charactors.Add(player);
-            //charactors.Add(enemy);
-
             battlers.Add(player);
             battlers.Add(enemy);
 
@@ -62,27 +58,37 @@ namespace test
         {
             while (true)
             {
-                var end = Direct(battlers[0], battlers[1]);
+                (var battleStr ,var isEnd) = Direct(battlers[0], battlers[1]);
+                foreach (var b in battleStr)
+                {
+                    Console.WriteLine(b);
+                }
                 Console.ReadLine();
-                if (end) break;
+                if (isEnd) break;
                 Console.Clear();
-                end = Direct(battlers[1], battlers[0]);
+
+                (battleStr,isEnd) = Direct(battlers[1], battlers[0]);
+                foreach (var b in battleStr)
+                {
+                    Console.WriteLine(b);
+                }
                 Console.ReadLine();
-                if (end) break;
+                if (isEnd) break;
                 Console.Clear();
             }
         }
 
-        bool Direct(IBattleable attacker, IBattleable defencer)
+        (List<string>, bool) Direct(IBattleable attacker, IBattleable defencer)
         {
-            attacker.Attack();
+            var attackStr = attacker.Attack();
             var damagePoint = DamagePointCalc(attacker, defencer);
-            defencer.BeDamaged(damagePoint);
-            if (defencer.hp <= 0)
-            {
-                return true;
-            }
-            return false;
+            (var damageStr,var isEnd) = defencer.BeDamaged(damagePoint);
+            
+            var returnList = new List<string>();
+            returnList.Add(attackStr);
+            damageStr.ForEach(n => returnList.Add(n));
+
+            return (returnList, isEnd);
         }
 
         public void Test()

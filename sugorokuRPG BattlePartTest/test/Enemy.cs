@@ -16,16 +16,23 @@ namespace sugorokuRPG_BattlePartTest
         public int magicDefencePoint { get; set; }
         public int speed { get; set; }
 
-        public void Attack()
+        public string Attack()
         {
-            Console.WriteLine("敵の攻撃！");
+            return "敵の攻撃！";
         }
 
-        public void BeDamaged(int damagePoint)
+        public (List<string>, bool) BeDamaged(int damagePoint)
         {
-            Console.WriteLine($"敵に{damagePoint}のダメージ");
+            var returnList = new List<string>();
+            returnList.Add($"敵に{damagePoint}のダメージ");
             hp -= damagePoint;
-            Console.WriteLine($"敵のHPが{hp}になった。");
+            returnList.Add($"敵のHPが{hp}になった。");
+            if (hp <= 0)
+            {
+                returnList.Add($"敵は倒れた");
+                return (returnList,true);
+            }
+            return (returnList,false);
         }
     }
 }
