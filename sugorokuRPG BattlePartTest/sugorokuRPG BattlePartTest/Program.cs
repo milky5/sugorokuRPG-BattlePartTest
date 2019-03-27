@@ -162,7 +162,8 @@ namespace sugorokuRPG_BattlePartTest
 
         public float DamageRatioGenerator()
         {
-            int ransu = Random(0, 100);
+            Random random = new Random();
+            int ransu = random.Next(0, 100);
 
             float ratio = 1.0f;
 

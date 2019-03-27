@@ -43,7 +43,7 @@ namespace test
             enemy.defencePoint = 8;
             enemy.magicAttackPoint = 8;
             enemy.magicDefencePoint = 8;
-            enemy.speed = 8;
+            enemy.speed = 20;
             enemy.charactorName = "てき";
         }
 
@@ -60,15 +60,29 @@ namespace test
 
         void Lister()
         {
-            Direct(battlers[0], battlers[1]);
-            Direct(battlers[1], battlers[0]);
+            while (true)
+            {
+                var end = Direct(battlers[0], battlers[1]);
+                Console.ReadLine();
+                if (end) break;
+                Console.Clear();
+                end = Direct(battlers[1], battlers[0]);
+                Console.ReadLine();
+                if (end) break;
+                Console.Clear();
+            }
         }
 
-        void Direct(IBattleable attacker, IBattleable defencer)
+        bool Direct(IBattleable attacker, IBattleable defencer)
         {
             attacker.Attack();
             var damagePoint = DamagePointCalc(attacker, defencer);
             defencer.BeDamaged(damagePoint);
+            if (defencer.hp <= 0)
+            {
+                return true;
+            }
+            return false;
         }
 
         public void Test()
